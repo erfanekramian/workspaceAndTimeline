@@ -1,0 +1,13 @@
+i:hover
+{
+    cursor: pointer;
+}
+.workSpacesList
+{
+    max-height: 150px;
+    overflow-y: scroll;
+}
+.workSpaceItem:hover
+{
+    cursor: pointer;
+}

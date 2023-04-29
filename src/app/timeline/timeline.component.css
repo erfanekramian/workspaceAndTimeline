@@ -1,0 +1,48 @@
+.timeline {
+    position: relative;
+    padding-left: 40px;
+  }
+
+  .timeline-content div,.timeline-content p{
+    margin: 0px 2px;
+  }
+
+  .timeline-item-container
+  {
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+  
+  .timeline-item {
+    position: relative;
+    height: 50px;
+  }
+  
+  .timeline-circle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    /* border:5px solid blue; */
+    background-color: white;
+  }
+  
+  .timeline-content {
+    margin-left: 30px;
+  }
+  
+  .timeline-content h3 {
+    margin-top: 0;
+  }
+  
+  
+  .timeline-item:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    height: 100%;
+    border-left: 2px solid #ccc; 
+  }
+  
