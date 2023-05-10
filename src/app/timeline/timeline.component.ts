@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-timeline',
@@ -7,6 +7,7 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./timeline.component.css']
 })
 export class TimelineComponent implements OnInit {
+  timelineForm:any
   today = new Date().toISOString().split('T')[0].replace(/-/g, '/')
   newTimeLine = {
     title: '', time: (new Date()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
@@ -38,8 +39,20 @@ export class TimelineComponent implements OnInit {
 
   ngOnInit(): void {
     this.sortDateTime()
+    this.timelineForm = new FormGroup({
+      'date': new FormControl(this.newTimeLine.date),
+      'title': new FormControl(''),
+      'time':new FormControl(this.newTimeLine.time)
+
+    })
+    this.timelineForm.valueChanges.subscribe((value:any) => {
+      this.newTimeLine.time = value.time;
+      this.newTimeLine.date = value.date;
+      this.newTimeLine.title = value.title;
+    });
   }
   addNewTimeline() {
+ 
     this.newTimeLine.color = 'gray'
     this.timelineItems.push(this.newTimeLine)
     this.newTimeLine = {
@@ -47,6 +60,7 @@ export class TimelineComponent implements OnInit {
       date: (new Date()).toISOString().split('T')[0].replace(/-/g, '/'), color: ''
     }
     this.sortDateTime()
+    this.timelineForm.reset(this.newTimeLine)
 
   }
 
